@@ -1,0 +1,10 @@
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\bin\Release\ProjectClassLibrary.dll.config
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\bin\Release\ProjectClassLibrary.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\bin\Release\ProjectClassLibrary.pdb
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\bin\Release\EntityFramework.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\bin\Release\EntityFramework.SqlServer.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\bin\Release\Newtonsoft.Json.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\bin\Release\EntityFramework.xml
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\bin\Release\EntityFramework.SqlServer.xml
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\obj\Release\ProjectClassLibrary.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ProjectClassLibrary\obj\Release\ProjectClassLibrary.pdb

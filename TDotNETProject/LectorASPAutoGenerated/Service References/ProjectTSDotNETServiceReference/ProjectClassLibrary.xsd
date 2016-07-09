@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/ProjectClassLibrary" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ProjectClassLibrary" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Question">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Chapter" nillable="true" type="tns:Chapter" />
+      <xs:element minOccurs="0" name="ChapterId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Duplicate" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Justification" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QuestionId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Requirement" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Responses" nillable="true" type="tns:ArrayOfResponse" />
+      <xs:element minOccurs="0" name="TestQuestions" nillable="true" type="tns:ArrayOfTestQuestion" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Question" nillable="true" type="tns:Question" />
+  <xs:complexType name="Chapter">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChapterId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Questions" nillable="true" type="tns:ArrayOfQuestion" />
+      <xs:element minOccurs="0" name="Subject" nillable="true" type="tns:Subject" />
+      <xs:element minOccurs="0" name="SubjectId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Tests" nillable="true" type="tns:ArrayOfTest" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Chapter" nillable="true" type="tns:Chapter" />
+  <xs:complexType name="ArrayOfQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Question" nillable="true" type="tns:Question" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfQuestion" nillable="true" type="tns:ArrayOfQuestion" />
+  <xs:complexType name="Subject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Chapters" nillable="true" type="tns:ArrayOfChapter" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Students" nillable="true" type="tns:ArrayOfStudent" />
+      <xs:element minOccurs="0" name="SubjectId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Subject" nillable="true" type="tns:Subject" />
+  <xs:complexType name="ArrayOfChapter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Chapter" nillable="true" type="tns:Chapter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChapter" nillable="true" type="tns:ArrayOfChapter" />
+  <xs:complexType name="ArrayOfStudent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Student" nillable="true" type="tns:Student" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStudent" nillable="true" type="tns:ArrayOfStudent" />
+  <xs:complexType name="Student">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Examinations" nillable="true" type="tns:ArrayOfExamination" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SolvedTests" nillable="true" type="tns:ArrayOfSolvedTest" />
+      <xs:element minOccurs="0" name="StudentId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Subjects" nillable="true" type="tns:ArrayOfSubject" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Student" nillable="true" type="tns:Student" />
+  <xs:complexType name="ArrayOfExamination">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Examination" nillable="true" type="tns:Examination" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfExamination" nillable="true" type="tns:ArrayOfExamination" />
+  <xs:complexType name="Examination">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExaminationId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Students" nillable="true" type="tns:ArrayOfStudent" />
+      <xs:element minOccurs="0" name="Test" nillable="true" type="tns:Test" />
+      <xs:element minOccurs="0" name="TestId" type="ser:guid" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Examination" nillable="true" type="tns:Examination" />
+  <xs:complexType name="Test">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Chapters" nillable="true" type="tns:ArrayOfChapter" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Duplicate" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Examinations" nillable="true" type="tns:ArrayOfExamination" />
+      <xs:element minOccurs="0" name="NoQuestions" type="xs:int" />
+      <xs:element minOccurs="0" name="Punctaj" type="xs:int" />
+      <xs:element minOccurs="0" name="SolvedTests" nillable="true" type="tns:ArrayOfSolvedTest" />
+      <xs:element minOccurs="0" name="Test1" nillable="true" type="tns:ArrayOfTest" />
+      <xs:element minOccurs="0" name="Test2" nillable="true" type="tns:Test" />
+      <xs:element minOccurs="0" name="TestId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TestQuestions" nillable="true" type="tns:ArrayOfTestQuestion" />
+      <xs:element minOccurs="0" name="TestReferencedId" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="TimeToSolve" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Test" nillable="true" type="tns:Test" />
+  <xs:complexType name="ArrayOfSolvedTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SolvedTest" nillable="true" type="tns:SolvedTest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSolvedTest" nillable="true" type="tns:ArrayOfSolvedTest" />
+  <xs:complexType name="SolvedTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Pending" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Punctaj" type="xs:int" />
+      <xs:element minOccurs="0" name="SolvedTestId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Student" nillable="true" type="tns:Student" />
+      <xs:element minOccurs="0" name="StudentId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Test" nillable="true" type="tns:Test" />
+      <xs:element minOccurs="0" name="TestId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Time" type="ser:duration" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="SolvedTest" nillable="true" type="tns:SolvedTest" />
+  <xs:complexType name="ArrayOfTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Test" nillable="true" type="tns:Test" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTest" nillable="true" type="tns:ArrayOfTest" />
+  <xs:complexType name="ArrayOfTestQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TestQuestion" nillable="true" type="tns:TestQuestion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTestQuestion" nillable="true" type="tns:ArrayOfTestQuestion" />
+  <xs:complexType name="TestQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Duplicate" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Punctaj" type="xs:int" />
+      <xs:element minOccurs="0" name="Question" nillable="true" type="tns:Question" />
+      <xs:element minOccurs="0" name="QuestionId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Test" nillable="true" type="tns:Test" />
+      <xs:element minOccurs="0" name="TestId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TestQuestion1" nillable="true" type="tns:ArrayOfTestQuestion" />
+      <xs:element minOccurs="0" name="TestQuestion2" nillable="true" type="tns:TestQuestion" />
+      <xs:element minOccurs="0" name="TestQuestionId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TestQuestionReferencedId" nillable="true" type="ser:guid" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="TestQuestion" nillable="true" type="tns:TestQuestion" />
+  <xs:complexType name="ArrayOfSubject">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subject" nillable="true" type="tns:Subject" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSubject" nillable="true" type="tns:ArrayOfSubject" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="User">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Student" nillable="true" type="tns:Student" />
+      <xs:element minOccurs="0" name="StudentId" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserId" type="ser:guid" />
+      <xs:element minOccurs="0" name="UserType" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Response" nillable="true" type="tns:Response" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfResponse" nillable="true" type="tns:ArrayOfResponse" />
+  <xs:complexType name="Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Answer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Correct" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Duplicate" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Question" nillable="true" type="tns:Question" />
+      <xs:element minOccurs="0" name="QuestionId" type="ser:guid" />
+      <xs:element minOccurs="0" name="ResponseId" type="ser:guid" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Response" nillable="true" type="tns:Response" />
+</xs:schema>

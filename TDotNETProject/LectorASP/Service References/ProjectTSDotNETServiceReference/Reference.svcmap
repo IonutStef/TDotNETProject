@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="117839c4-3e59-401e-a01c-de1418370f22" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9191/ProjectClassLibrary/Lector/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="8ec60b8d-470c-429e-9ef0-fd3705477604" SourceId="1" SourceUrl="http://localhost:9191/ProjectClassLibrary/Lector/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cb9a32fe-e436-4bd5-91e4-59529537c015" SourceId="1" SourceUrl="http://localhost:9191/ProjectClassLibrary/Lector/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="01703040-eeda-4537-8fe9-1b0e707fa5e7" SourceId="1" SourceUrl="http://localhost:9191/ProjectClassLibrary/Lector/mex" />
+    <MetadataFile FileName="ProjectClassLibrary.xsd" MetadataType="Schema" ID="cd9a1312-92ab-4e81-a2b0-4fff12dbd6ae" SourceId="1" SourceUrl="http://localhost:9191/ProjectClassLibrary/Lector/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="2d3b7121-d216-4ef4-8deb-b688d4c93800" SourceId="1" SourceUrl="http://localhost:9191/ProjectClassLibrary/Lector/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

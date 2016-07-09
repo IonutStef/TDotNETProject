@@ -1,0 +1,61 @@
+﻿@model List<LectorASP.ProjectTSDotNETServiceReference.Subject>
+@{
+    ViewBag.Title = "Edit Subject";
+}
+
+<script>
+    $(document).ready(function () {
+        $('.entityFromDB').click(function () {
+            var id = $(this).attr("hiddenfield");
+            //var id = $(this).hiddenfield;
+            //$('#entityContent').css("display", "inline-block");
+
+            $.ajax({
+                cache: false,
+                type: "GET",
+                //contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: '@Url.Action("SubjectEntitySelected", "LectorEdit")',
+                data: { ID: id },
+                success: function (data) {
+                    $('#entityContent').css("display", "inline-block");
+                    $("span[name='subjectId']").html("<b>" + data.ID + "</b>");
+                    $("input[name='subjectTitle']").val(data.Title);
+                    $("input[name='subjectDescription']").val(data.Description);
+                    var select = $("select[name='subjectChapters']");
+                    var chapters = data.Chapters;
+                    //console.log(chapters);
+                    chapters.forEach(function (entry) {
+                        console.log(entry.ID + " - " + entry.Name);
+                    });
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert('Fail');
+                }
+            });
+        });
+    });
+</script>
+
+<h2>Edit Subject</h2>
+
+
+<div id="databaseContent" class="DBEntityListContent">
+    @foreach(LectorASP.ProjectTSDotNETServiceReference.Subject subject in Model)
+    {
+        <div class="entityFromDB" hiddenfield="@subject.SubjectId">@subject.Title</div>
+    }
+</div>
+<div id="entityContent" class="DBEntityContent">
+    <p class="entityTitle"><span>Titlu</span></p>
+    <br />
+    <label class="entityLabel">ID</label><span class="entityInput" name="subjectId"></span>
+    <br />
+    <label class="entityLabel" for="subjectTitle">Title</label> <input class="entityInput" type="text" name="subjectTitle" value="" />
+    <br />
+    <label class="entityLabel" for="subjectDescription">Description</label> <textarea class="entityInput" readonly name="subjectDescription" value=""></textarea>
+    <br />
+    <label class="entityLabel" for="subjectChapters">Chapters</label> <select class="entityInput" name="subjectChapters"></select>
+</div>
+<div class="clear"></div>

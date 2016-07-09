@@ -1,0 +1,68 @@
+﻿@model LectorASP.Controllers.MyViewModel
+
+<h1><strong><span hiddenField="id invizibil">DataBase</span></strong></h1>
+<!--
+<script>
+    $("#selectorPDB").change(function () {
+    $(this).parents("form").submit();
+});
+</script>-->
+
+@if (Model != null)
+{
+    <script>
+        $(document).ready(function () {
+            $('#selectorPDB').val("@Model.FirstField");
+        });
+    </script>
+}
+
+@using (Html.BeginForm("Reset", "Home"))
+{
+    <input type="submit" value="Reset" style="float: right;" />
+}
+
+@using (Html.BeginForm())
+{
+    <select id="selectorPDB" name="selectorPDB">
+        <option value="null"> </option>
+        <option value="Subjects">Subjects</option>
+        <option value="Chapters">Chapters</option>
+        <option value="Students">Students</option>
+        <option value="Questions">Questions</option>
+        <option value="Tests">Tests</option>
+        <option value="Examinations">Examinations</option>
+    </select>
+    <input type="submit" value="Show" />
+    <br />
+    <input type="button" value="Edit" onclick="location.href='@Url.Action("StartEdit", "LectorEdit")?toEdit=' + $('#selectorPDB').val()" />;
+}
+
+@{
+    if (Model != null)
+    {
+        if (Model.FirstField != null)
+        {
+            var items = Model.SecondField;
+            <h1>@Model.FirstField</h1>
+            <ul>
+                @foreach (var item in items)
+                {
+                    <li>
+                        <span class="dataBaseShow" hiddenField="@item.ID">@item.FirsStringField</span>
+                        @if(item.SecondStringField != null)
+                        {
+                            <span class="dataBaseShow">@item.SecondStringField</span>
+                        }
+                        @if (item.ThirdStringField != null)
+                        {
+                            <span class="dataBaseShow">@item.ThirdStringField</span>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+    }
+}
+
+
