@@ -10,7 +10,8 @@ namespace ConsoleServerHost
     {
         public void sayHelloWorld()
         {
-            Console.WriteLine("Hello World");
+            Console.WriteLine("Hello World! How are you?");
+            Console.WriteLine("I just modified this file!");
         }
     }
 }
