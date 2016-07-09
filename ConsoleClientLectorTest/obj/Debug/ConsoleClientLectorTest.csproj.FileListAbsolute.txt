@@ -1,0 +1,6 @@
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\bin\Debug\ConsoleClientLectorTest.exe.config
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\bin\Debug\ConsoleClientLectorTest.exe
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\bin\Debug\ConsoleClientLectorTest.pdb
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\obj\Debug\ConsoleClientLectorTest.csprojResolveAssemblyReference.cache
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\obj\Debug\ConsoleClientLectorTest.exe
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\obj\Debug\ConsoleClientLectorTest.pdb

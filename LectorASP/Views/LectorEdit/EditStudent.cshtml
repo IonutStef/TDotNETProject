@@ -1,0 +1,13 @@
+﻿@model List<LectorASP.ProjectTSDotNETServiceReference.Student>
+@{
+    ViewBag.Title = "Edit Student";
+}
+
+<h2>Edit Student</h2>
+
+<div id="databaseContent" class="DBEntityContent">
+    @foreach (LectorASP.ProjectTSDotNETServiceReference.Student student in Model)
+    {
+        <div class="entityFromDB" hiddenField="@student.StudentId"><span>@student.LastName @student.FirstName</span></div>
+    }
+</div>

@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ServerLector" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ProjectClassLibrary" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServerLector_TestAddSubject_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAddSubject" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_PrintSubjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintSubjects" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_TestAddChapter_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAddChapter" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_PrintChapters_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintChapters" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_TestAddStudentUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAddStudentUser" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_PrintStudents_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintStudents" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_TestAddQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAddQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_PrintQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintQuestions" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_TestAddTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAddTest" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_PrintTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintTests" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_TestAddExamination_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAddExamination" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_PrintExaminations_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintExaminations" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_TestAddSolvedTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestAddSolvedTest" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_PrintSolvedTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrintSolvedTests" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_DeleteAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAll" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_ModifyRemoveCreateQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyRemoveCreateQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_ModifyRemoveCreateTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyRemoveCreateTest" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_AddOpp_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddOpp" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_AddOpp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddOppResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_AddAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAll" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetSubjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjects" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetSubjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetChapters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChapters" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetChapters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChaptersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTests" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetTests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetStudents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudents" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetStudents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestions" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetExaminations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExaminations" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetExaminations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExaminationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsers" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetTestQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestQuestions" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetTestQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetSolvedTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSolvedTests" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetSolvedTests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSolvedTestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetSubject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubject" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetSubject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetChapter_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChapter" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetChapter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChapterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTest" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetStudent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudent" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetStudent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetExamination_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExamination" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetExamination_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExaminationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUser" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetTestQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetTestQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetSolvedTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSolvedTest" />
+  </wsdl:message>
+  <wsdl:message name="IServerLector_GetSolvedTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSolvedTestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IServerLector">
+    <wsdl:operation name="TestAddSubject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/TestAddSubject" message="tns:IServerLector_TestAddSubject_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintSubjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/PrintSubjects" message="tns:IServerLector_PrintSubjects_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestAddChapter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/TestAddChapter" message="tns:IServerLector_TestAddChapter_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintChapters">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/PrintChapters" message="tns:IServerLector_PrintChapters_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestAddStudentUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/TestAddStudentUser" message="tns:IServerLector_TestAddStudentUser_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintStudents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/PrintStudents" message="tns:IServerLector_PrintStudents_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestAddQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/TestAddQuestion" message="tns:IServerLector_TestAddQuestion_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/PrintQuestions" message="tns:IServerLector_PrintQuestions_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestAddTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/TestAddTest" message="tns:IServerLector_TestAddTest_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/PrintTests" message="tns:IServerLector_PrintTests_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestAddExamination">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/TestAddExamination" message="tns:IServerLector_TestAddExamination_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintExaminations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/PrintExaminations" message="tns:IServerLector_PrintExaminations_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TestAddSolvedTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/TestAddSolvedTest" message="tns:IServerLector_TestAddSolvedTest_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrintSolvedTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/PrintSolvedTests" message="tns:IServerLector_PrintSolvedTests_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/DeleteAll" message="tns:IServerLector_DeleteAll_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRemoveCreateQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/ModifyRemoveCreateQuestion" message="tns:IServerLector_ModifyRemoveCreateQuestion_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRemoveCreateTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/ModifyRemoveCreateTest" message="tns:IServerLector_ModifyRemoveCreateTest_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddOpp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/AddOpp" message="tns:IServerLector_AddOpp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/AddOppResponse" message="tns:IServerLector_AddOpp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/AddAll" message="tns:IServerLector_AddAll_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetSubjects" message="tns:IServerLector_GetSubjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetSubjectsResponse" message="tns:IServerLector_GetSubjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChapters">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetChapters" message="tns:IServerLector_GetChapters_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetChaptersResponse" message="tns:IServerLector_GetChapters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetTests" message="tns:IServerLector_GetTests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetTestsResponse" message="tns:IServerLector_GetTests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudents">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetStudents" message="tns:IServerLector_GetStudents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetStudentsResponse" message="tns:IServerLector_GetStudents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetQuestions" message="tns:IServerLector_GetQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetQuestionsResponse" message="tns:IServerLector_GetQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExaminations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetExaminations" message="tns:IServerLector_GetExaminations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetExaminationsResponse" message="tns:IServerLector_GetExaminations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetUsers" message="tns:IServerLector_GetUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetUsersResponse" message="tns:IServerLector_GetUsers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetTestQuestions" message="tns:IServerLector_GetTestQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetTestQuestionsResponse" message="tns:IServerLector_GetTestQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSolvedTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetSolvedTests" message="tns:IServerLector_GetSolvedTests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetSolvedTestsResponse" message="tns:IServerLector_GetSolvedTests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetSubject" message="tns:IServerLector_GetSubject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetSubjectResponse" message="tns:IServerLector_GetSubject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChapter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetChapter" message="tns:IServerLector_GetChapter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetChapterResponse" message="tns:IServerLector_GetChapter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetTest" message="tns:IServerLector_GetTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetTestResponse" message="tns:IServerLector_GetTest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetStudent" message="tns:IServerLector_GetStudent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetStudentResponse" message="tns:IServerLector_GetStudent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetQuestion" message="tns:IServerLector_GetQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetQuestionResponse" message="tns:IServerLector_GetQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExamination">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetExamination" message="tns:IServerLector_GetExamination_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetExaminationResponse" message="tns:IServerLector_GetExamination_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetUser" message="tns:IServerLector_GetUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetUserResponse" message="tns:IServerLector_GetUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetTestQuestion" message="tns:IServerLector_GetTestQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetTestQuestionResponse" message="tns:IServerLector_GetTestQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSolvedTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServerLector/GetSolvedTest" message="tns:IServerLector_GetSolvedTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServerLector/GetSolvedTestResponse" message="tns:IServerLector_GetSolvedTest_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServerLector" type="tns:IServerLector">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="TestAddSubject">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/TestAddSubject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="PrintSubjects">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/PrintSubjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="TestAddChapter">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/TestAddChapter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="PrintChapters">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/PrintChapters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="TestAddStudentUser">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/TestAddStudentUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="PrintStudents">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/PrintStudents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="TestAddQuestion">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/TestAddQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="PrintQuestions">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/PrintQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="TestAddTest">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/TestAddTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="PrintTests">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/PrintTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="TestAddExamination">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/TestAddExamination" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="PrintExaminations">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/PrintExaminations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="TestAddSolvedTest">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/TestAddSolvedTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="PrintSolvedTests">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/PrintSolvedTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAll">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/DeleteAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRemoveCreateQuestion">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/ModifyRemoveCreateQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyRemoveCreateTest">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/ModifyRemoveCreateTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="AddOpp">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/AddOpp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAll">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/AddAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetSubjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChapters">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetChapters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTests">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudents">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetStudents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestions">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExaminations">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetExaminations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsers">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestQuestions">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetTestQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSolvedTests">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetSolvedTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubject">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetSubject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChapter">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetChapter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTest">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudent">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetStudent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestion">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExamination">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetExamination" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUser">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestQuestion">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetTestQuestion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSolvedTest">
+      <soap:operation soapAction="http://tempuri.org/IServerLector/GetSolvedTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServerLector">
+    <wsdl:port name="BasicHttpBinding_IServerLector" binding="tns:BasicHttpBinding_IServerLector">
+      <soap:address location="http://localhost:9191/ProjectClassLibrary/Lector" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

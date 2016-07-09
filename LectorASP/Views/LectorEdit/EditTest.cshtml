@@ -1,0 +1,135 @@
+﻿@model List<LectorASP.ProjectTSDotNETServiceReference.Test>
+@{
+    ViewBag.Title = "Edit Test";
+}
+
+<script>
+    function callFirstAjax(id) {
+        $.ajax({
+            cache: false,
+            type: "GET",
+            //contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: '@Url.Action("TestnEntitySelected", "LectorEdit")',
+            data: { ID: id },
+            success: function (data) {
+                $('#entityContent').css("display", "inline-block");
+                //console.log(data);
+                $("select[name='testChapters']").html('');
+                $("select[name='testExaminations']").html('');
+                $("select[name='testQuestions']").html('');
+                $("select[name='testSolvedTests']").html('');
+                $("span[name='testId']").html("<b>" + data.ID + "</b>");
+                $("input[name='testTitle']").val(data.Title);
+                $("textarea[name='testDescription']").val(data.Description);
+                $("input[name='testPunctaj']").val(data.Points);
+                $("input[name='testNoQuestions']").val(data.NoQuestions);
+                $("input[name='testTimeToSolve']").val(data.TimeToSolve);
+                //var refTest = data.RefTest;
+                //console.log(chapter);
+                //var element = $('<option></option>');
+                //element.val(refTest.ID).html("<span>" + refTest.Name + "</span>");
+                //$("select[name='questionChapter']").append(element);
+                //$('<option>').data("hiddenField", chapter.ID).text(chapter.Name).appendTo("select[name='questionChapter']");
+                //$('<option>').text(" ").attr("class", "empty").appendTo("select[name='questionResponses']");
+                var examinations = data.Examinations;
+                examinations.forEach(function (entry) {
+                    $('<option>').val(entry.ID).html("<span>" + entry.Name + "</span>").appendTo("select[name='testExaminations']");
+                });
+
+                var chapters = data.Chapters;
+                chapters.forEach(function (entry) {
+                    $('<option>').val(entry.ID).html("<span>" + entry.Name + "</span>").appendTo("select[name='testChapters");
+                })
+
+                var questions = data.Questions;
+                questions.forEach(function (entry) {
+                    $('<option>').val(entry.ID).html("<span hiddenField='" + entry.Value + "'>" + entry.Name + "</span>").appendTo("select[name='testQuestions']");
+                })
+                questionChanged($("select[name='testQuestions']"));
+
+                var solvedTests = data.SolvedTests;
+
+                solvedTests.forEach(function (entry) {
+                    $('<option>').val(entry.ID).html("<span hiddenField='" + entry.Value + "'>" + entry.Name + "</span>").appendTo("select[name='testSolvedQuestions']");
+                })
+                
+                solvedTestChanged($("select[name='testSolvedQuestions']"));
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Fail');
+            }
+        });
+    }
+
+
+    function setNewQuestionValue() {
+        var questionPoints = $('span', $("option:selected", $("select[name='questionTests']"))).attr("hiddenField");
+        var testPoints = $("input[tyoe='number' name='testPunctaj']").val();
+        testPoints = testPoints - questionPoints;
+        var questionPoints = $("input[name='testQuestionPoints']").val();
+        testPoints = testPoints + questionPoints;
+        $("input[tyoe='number' name='testPunctaj']").val(testPoints);
+        $('span', $("option:selected", $("select[name='questionTests']"))).attr("hiddenField", questionPoints);
+    }
+
+    function questionChanged(sel) {
+        $("div[name='testQuestionRequirement']").html("");
+        var optionSelected = $("option:selected", sel);
+        $("div[name='testQuestionRequirement']").html("<span class='textareaContent'>" + optionSelected.text() + "</span>");
+        var value = $('span', $("option:selected", sel)).attr("hiddenField");
+        $("input[name='testQuestionPoints']").val(value);
+    }
+
+    function solvedTestChanged(sel) {
+        var value = $('span', $("option:selected", sel)).attr("hiddenField");
+        $("input[name='testSolvedTestPoints']").val(value);
+    }
+</script>
+
+
+<h2>Edit Test</h2>
+
+
+<div id="databaseContent" class="DBEntityListContent">
+    @foreach (LectorASP.ProjectTSDotNETServiceReference.Test test in Model)
+    {
+        <div class="entityFromDB" hiddenField="@test.TestId" onclick="callFirstAjax($(this).attr('hiddenfield'))"><span>@test.Title</span></div>
+    }
+</div>
+
+
+<div id="entityContent" class="DBEntityContent">
+    @using (Html.BeginForm("EditQuestion", "LectorEdit", FormMethod.Post))
+    {
+        <p class="entityTitle"><span>Titlu</span></p>
+        <br />
+        <label class="entityLabel">ID</label><span class="entityInput" name="testId"></span>
+        <br />
+        <label class="entityLabel" for="testTitle">Title</label> <input type="text" class="entityInput" readonly name="testTitle" value=""></input>
+        <br />
+        <label class="entityLabel" for="testDescription">Description</label> <textarea class="entityInput" readonly name="testDescription" value="" ></textarea>
+        <br />
+        <label class="entityLabel" for="testTimeToSolve">Time to Solve</label> <input type="number" class="entityInput" readonly name="testTimeToSolve" value="" disabled="disabled" />
+        <br />
+        <label class="entityLabel" for="testNoQuestions">Number of Questions</label> <input type="number" class="entityInput" readonly name="testNoQuestions" value="" disabled="disabled" />
+        <br />
+        <label class="entityLabel" for="testPunctaj">Punctaj</label> <input type="number" class="entityInput" readonly name="testPunctaj" value="" disabled="disabled" />
+        <br />
+        <label class="entityLabel" for="testChapters">Chapters</label> <select class="entityInput" name="testChapters"></select>
+        <br />
+        <label class="entityLabel" for="testExaminations">Examinations</label> <select class="entityInput" name="testExaminations"></select>
+        <br />
+        <label class="entityLabel" for="testQuestions">Questions</label> <select class="entityInput" name="testQuestions" onchange="questionChanged(this)"></select> <input type="number" name="testQuestionPoints" value="" disabled="disabled" /> <input type="button" value="Set" disabled="disabled" onclick="setNewQuestionValue()" />
+        <br />
+        <div name="testQuestionRequirement" class="entityTextChangeInput"></div>
+        <br />
+        <label class="entityLabel" for="testSolvedTests">Solved Tests</label> <select class="entityInput" name="testSolvedTests" onchange="solvedTestChanged(this)"></select>  <input type="number" name="testSolvedTestPoints" value="" disabled="disabled" />
+        <br />
+        <div class="modifySavePanel">
+            <input type="button" value="Modify" onclick="modifyTest()" />
+            <input type="button" value="Save" disabled="disabled" onclick="submitTest()" />
+        </div>
+    }
+</div>
+<div class="clear"></div>

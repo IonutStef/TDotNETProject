@@ -1,0 +1,5 @@
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\bin\Release\ConsoleClientLectorTest.exe.config
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\bin\Release\ConsoleClientLectorTest.exe
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\bin\Release\ConsoleClientLectorTest.pdb
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\obj\Release\ConsoleClientLectorTest.exe
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleClientLectorTest\obj\Release\ConsoleClientLectorTest.pdb

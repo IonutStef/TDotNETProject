@@ -1,0 +1,13 @@
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\ConsoleServerHost.exe.config
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\ConsoleServerHost.exe
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\ConsoleServerHost.pdb
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\EntityFramework.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\EntityFramework.SqlServer.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\ProjectClassLibrary.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\Newtonsoft.Json.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\ProjectClassLibrary.pdb
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\EntityFramework.xml
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\bin\Release\EntityFramework.SqlServer.xml
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\obj\Release\ConsoleServerHost.csprojResolveAssemblyReference.cache
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\obj\Release\ConsoleServerHost.exe
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\ConsoleServerHost\obj\Release\ConsoleServerHost.pdb

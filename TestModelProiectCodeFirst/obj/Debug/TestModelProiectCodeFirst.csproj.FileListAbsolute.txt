@@ -1,0 +1,11 @@
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\bin\Debug\TestModelProiectCodeFirst.exe.config
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\bin\Debug\TestModelProiectCodeFirst.exe
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\bin\Debug\TestModelProiectCodeFirst.pdb
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\bin\Debug\EntityFramework.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\bin\Debug\EntityFramework.SqlServer.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\bin\Debug\EntityFramework.xml
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\bin\Debug\EntityFramework.SqlServer.xml
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\obj\Debug\TestModelProiectCodeFirst.exe
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\obj\Debug\TestModelProiectCodeFirst.pdb
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\bin\Debug\Newtonsoft.Json.dll
+E:\Facultate\AnIII\TDotNET\Proiect\TestModelProiectCodeFirst\TestModelProiectCodeFirst\obj\Debug\TestModelProiectCodeFirst.csprojResolveAssemblyReference.cache
