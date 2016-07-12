@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Adding yet more code!
+=======
+Fix1
+>>>>>>> f926640... Added fix1
 =======
 Fix1
 >>>>>>> f926640... Added fix1
