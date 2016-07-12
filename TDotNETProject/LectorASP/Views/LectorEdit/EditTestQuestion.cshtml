@@ -1,0 +1,13 @@
+﻿@model List<LectorASP.ProjectTSDotNETServiceReference.TestQuestion>
+@{
+    ViewBag.Title = "Edit TestQuestion";
+}
+
+<h2>Edit TestQuestion</h2>
+
+<div id="databaseContent" class="DBEntityContent">
+    @foreach (LectorASP.ProjectTSDotNETServiceReference.TestQuestion testQuestion in Model)
+    {
+        <div class="entityFromDB" hiddenField="@testQuestion.TestQuestionId"><span>@testQuestion.Test.Title</span></div>
+            }
+</div>

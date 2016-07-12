@@ -1,0 +1,989 @@
+{
+	"questions": 
+	[
+		{
+		  	"chapter": "EF",
+			"requirement": "Lazy loading, cerinte:",
+			"answers": 
+			[
+				{
+					"answer": "Clasele trebuie sa fie publice.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Depinde ne noi daca vrem sa fie sealed.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Poprietatile de navigare pot fi private.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Proprietatile de navigare trebuie sa fie marcate ca virtual.",
+					"correct": "true"
+				}
+			],
+			"justification": "Clasele trebuie sa fie publice pentru a putea fi accesate de catre model si de catre. Daca proprietatea nu va fi marcata ca virtual, Lazy Loading nu va avea acces la ea. Clasele nu pot fi marcate ca Sealed. Proprietatile de navigare trebuie sa fie publice, pentru a fi utilizate."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "In ce consta arhitectura ADO.NET Entity Framework?",
+			"answers": 
+			[
+				{
+					"answer": "Provideri specifici pentru sursa de date.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Parser EDM.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Tratare erori.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Parser XML in caz ca baza de date este stocata sub forma de fisiere XML.",
+					"correct": "false"
+				}
+			],
+			"justification": "Entity Framework ofera o modalitate personala de a interactiona cu baza de date. Relatiile sunt simplificate si transformate, dar pastreaza proprietatile pe care le au in baza de date. Include parsare EDM prin tartarea specificatiilor SDL (Storage Data language – model de memorare) al modelului de date, stabilirea asociatiilor dintre modelul relational (baza de date) si modelul conceptual. Din schema relationala se creaza vizualizari ale datelor ce corespund modelului conceptual. Informatii din mai multe tabele sunt agregate intr-o entitate. EF face doar parsare EDM, si se leaga doar la baza de date SQL."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Care sunt conceptele principale introduse te EDM?",
+			"answers": 
+			[
+				{
+					"answer": "Entity.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Relationship.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Indexes.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Views.",
+					"correct": "false"
+				},
+				{
+					"answer": "Procedures.",
+					"correct": "false"
+				}
+			],
+			"justification": "Elementele din baza de date sunt prezentate sub forma unor Entitati (clase POCO), cu care aplicatia poate interactiona. Relatiile din baza de date sunt prezente si in entitati, avand aceleasi semnificatii ca in baza de date. Indecsii, View-urile si proprietatile nu sunt intra prin parserul EDM."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Eager loading; Include():",
+			"answers": 
+			[
+				{
+					"answer": "Realizeaza un Join la nivelul bazei de date.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "O cerere poate contine un singr apel al metodei Include().",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Nu este nevoie adaugarea metodei la DbSet, pentru a o folosi ca parte a unei cereri, deoarece EF se ocupa singur de acest lucru, atunci cand intalneste metoda.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Este definita ca metoda extinsa pe IQueryable<T>",
+					"correct": "true"
+				}
+			],
+			"justification": "Metoda loading se manifesta asupra bazei de date prin Join-uri intre tabele. Cererile sunt facute asupra bazei de date, asa ca este necesara extinderea peste interfata IQueryable. O cerere poate activa multiple apeluri a metodei Include. Entity Framework nu se ocupa singur de adaugarea metodei la DbSet. Asta depinde de noi."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Eager loading; Include():",
+			"answers": 
+			[
+				{
+					"answer": "myDBcontext.Customers(c => c.Orders).FirstOrDefault()",
+					"correct": "false"
+				}, 
+				{
+					"answer": "myDBcontext.Entry(customerEntity).Property(\"Orders\").Load()",
+					"correct": "false"
+				}, 
+				{
+					"answer": "myDBcontext.Entry(customerEntity).Reference(c => c.Orders).Load()",
+					"correct": "true"
+				}, 
+				{
+					"answer": "myDBcontext.Customers.FirstOrDefault().Orders",
+					"correct": "false"
+				}
+			],
+			"justification": "Metoda foloseste expresii Lambda, care trebuie sa fie valide. Primul raspuns nu incarca raspunsul de la baza de date. Cel de-al doilea nu prezinta o expresie Lambda, la fel ca si ultima."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Cum putem adauga, updata si sterge tabele, folosind EF?",
+			"answers": 
+			[
+				{
+					"answer": "folosind comenzi ADO.NET ",
+					"correct": "false"
+				}, 
+				{
+					"answer": "prin crearea de clase asupra carora facem modificari",
+					"correct": "true"
+				}, 
+				{
+					"answer": "prin folosirea DBSET-ului oferit de Modelul Contextual",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Stergerea se poate face si prin stergerea Clasei generata de Model",
+					"correct": "false"
+				}
+			],
+			"justification": "Entity Framework, dupa cum spune si numele, creeaza entitati cu care utilizatorul poate interactiona in vederea modificarii bazei de date. Ceea ce trebuie el sa faca este sa adauge elemente in DBSET-ul creat de Model, si de a modifica, sau sterge, obiectele deja existente. Este adevarat ca putem modifica baza de date si prin Ado.Net, dar nu acesta este scopul lui EF."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Care sunt afirmatiile corecte cu vedere la lazy loading?",
+			"answers": 
+			[
+				{
+					"answer": "Lazy loading presupune incarcarea tuturor datelor care sunt intr-o relatie cu query-ul apelat, pentru a nu solicita baza de date cu interogari la fiecare pas.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Lazi loading presupune incarcarea informatiilor treptat. Astfel, de fiecare data cand va fi nevoie de o informatie noua, va fi adusa din baza de date.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Lazy loading este optiunea default aleasa de entity framework",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Putem utiliza si Lazy Loading, si Eager Loading in acelasi moment",
+					"correct": "true"
+				}
+			],
+			"justification": "Lazi loading poate fi interpretat ca incarcare inceata. Asta presupune ca nu se vor aduce toate informatiile de prima data, ci restul va fi lasat in asteptare pentru cand vor fi nevoie si de celelalte campuri. EF foloseste lazy loading ca mod default, fiind cel mai utilizat pentru task-uri comune, dar putem folosi si alte moduri aricand dori."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "LINQ to SQL vs EF",
+			"answers": 
+			[
+				{
+					"answer": "LINQ to SQL este util atunci cand dorim sa lucram cu baze de date diferite, in timp ce EF lucreaza doar cu SQL Server.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "LINQ se mapeaza direct pe tabele, in timp ce EF pe un model: o clasa EF poate afecta mai multe tabele.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "LINQ to SQL nu poate fi folosit in EF, asa cum nici EF nu poate fi folosit cu un proiect pur LINQ to SQL",
+					"correct": "false"
+				}, 
+				{
+					"answer": "EF nu acopera toate posibilitatite, asa ca uneori, se recomanda folosirea LINQ to SQL.",
+					"correct": "true"
+				}
+			],
+			"justification": "EF este conceput sa poata lucra cu orice tip de baza de date. In timp ce o interogare LINQ to SQL afecteaza doar tabele target, EF afecteaza si tabele de legatura, precum si relatii. Sunt cazuri pe care EF nu le acopera. In aceasta situatie, este recomandat folosirea de LINQ to SQL, deoarece acesta actioneaza direct pe baza de date."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Proprietati de navigare:",
+			"answers": 
+			[
+				{
+					"answer": "Au rolul de a reprezenta relatiile din tabele. Putem avea o referinta cate tabela din dreptul relatiei 1, si o colectie de referinte catre tabela din dreptul relatiei *",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Daca adaugam un element la capatul unei referinte, obligatoriu trebuie sa modificam si celalalt capat, pentru a recunoaste noile inregistrari.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "In cazul relatiei many-to-many, tabela de legatura va disparea, iar in cele doua tabele, vom avea cate o colectie cu celelalt tabel. Daca vom rula ceva pe acest model, va modifica si structura bazei de date, eliminand tabela de legatura.",
+					"correct": "false"
+				}
+			],
+			"justification": "Proprietatile de navigare sunt adaugate de EF pentru a tine locul relatiilor din baza de date. Relatia 1 - * va fi reprezentata printr-o colectie de obiecte cu obiecte din partea dreapta a relatiei, si un camd reperinta catre partea stanga a relatiei.  Atunci cand este adaugat/modificat un obiect, Proprietatea de navigare se actualizeaza automat pentru ambele clase. In aceasta situatie, baza de date nu va fi modificata, deoarece EF recunoaste relatiile, fiind declarate in model. "
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Clasa Transaction:",
+			"answers": 
+			[
+				{
+					"answer": "Cele mai importante metode sunt: Commit(), Rollback(), BeginTransaction()",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Atunci cand suntem in TransactionScope, metoda Complete() va avea acelasi rol ca si metoda Commit()",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Pentru a utiliza un TransactionScope, declaram un obiect de tipul TransactionScope scope = new TransactionScope();",
+					"correct": "false"
+				}
+			],
+			"justification": "Cele mai importante metode sunt Commit() si RollBack(), acestea aplicandu-se pe obiectului returnat de BeginTransaction(). In TransactionScope, Commit() este inlocuit de Complete(), care nu face altceva decat sa dea Commit() pe baza de date. Pentru a ne intra in TransactionScope, trebuie sa declaram acest scope folosind using."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Detectarea schimbarilor in baza de date:",
+			"answers": 
+			[
+				{
+					"answer": "Atunci cand in baza de date este efectuata o modificare, anumite evenimente sunt generate. Aceste evenimente apeleaza metoda DetectChanges()",
+					"correct": "true"
+				}, 
+				{
+					"answer": "DetectChanges() este apelata numai la stergere si adaugare, celelalte metode nemodificand baza de date.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Pentru a putea fi detectata modificarea unui obiect, fiecare obiect contine o proprietate State.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "DetectChanges() este responsabila si pentru sincronizarea relatiilor existente intre entitati.",
+					"correct": "true"
+				}
+			],
+			"justification": "Orice interactiune cu baza de date produce o serie de evenimente. Unele dintre aceste evenimente pot apela DetectChanges(). Interogarea bazei de date produce si ea un eveniment; acel evenimnet apeleaza DetectChanges(). Modificarile unui obiect sunt determinare de valorile proprietatii State, care este modificata la fiecare interactiune a clasei cu baza de date."
+		},
+		{
+		  	"chapter": "EF",
+			"requirement": "Modificarea starii:",
+			"answers": 
+			[
+				{
+					"answer": "Atunci cand facem o modificare, proprietatea State se modifica automat",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Dupa fiecare modificare, este rolul nostru sa modificam manual proprietatea state a fiecarul obiect modifat, pentru a instiinta baza de date.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Gestionarea proprietatii State se face prin interfete care au ca camp proprietatea State, si care sunt implementate de clasele target.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Proprietatea state poate fi reprezentat ca un vector de Integers",
+					"correct": "true"
+				}
+			],
+			"justification": "Dupa fiecare modificare, este datoria noastra sa modific proprietatea State pentru instiintarea bazei de date. Gestionarea acestei proprietati se poate face si prin clase abstracte. Pe langa interfata/clasa abstracta, mai apar modificari si in context. Proprietatea State este de tipul Enum, insa Enum poate fi interpretat ca un sir de valori Integer."
+		},
+		{
+		  	"chapter": "WPF",
+			"requirement": "Data binding; Directia de transfer a datelor.",
+			"answers": 
+			[
+				{
+					"answer": "Transferul de date a unei legaturi se face de la obiectul legat (target) catre proprietatea de care a fost legat (source).",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Transferul de date a unei legaturi se face de la proprietatea de care a fost legat obiectul (source), catre obiect (target).",
+					"correct": "true"
+				}, 
+				{
+					"answer": "One Way Binding face ca modificarea obiectului legat (target) sa manifeste modificari a proprietatii (source), dar modificari a proprietatii (source) sa nu induca modificari in obiect (target).",
+					"correct": "false"
+				}, 
+				{
+					"answer": "TwoWay Binding face ca modificari a sursei sa induca modificari in target, precum si modificari in target, sa induca modificari in sursa.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Pentru ca modelul sa detecteze modificari in sursa si target, sursa implementeaza automat (default) o proprietate de notificare a modificarilor.",
+					"correct": "false"
+				}
+			],
+			"justification": "Transferul de date printr-o legatura poate fi facuta atat de la source catre target, cat si invers. One Way Binding face ca modificari in source sa manifeste modificari in target. Sursa nu implementeaza proprietatea necesara notificarii. Este datoria noastra sa facem asta."
+		},
+		{
+		  	"chapter": "WPF",
+			"requirement": "Cum iei informatia dintr-un label?",
+			"answers": 
+			[
+				{
+					"answer": "string content = labelName.Content;",
+					"correct": "false"
+				}, 
+				{
+					"answer": "string content = labelName.Content.ToString();",
+					"correct": "true"
+				}, 
+				{
+					"answer": "string content = labelName.Text;",
+					"correct": "false"
+				}, 
+				{
+					"answer": "string content = labelName.Content();",
+					"correct": "false"
+				}
+			],
+			"justification": "Pentru a accesa continutul unui label, apelam la Proprietatea Content. Text este intalnit doar in elementele TextBox*"
+		},
+		{
+		  	"chapter": "WPF",
+			"requirement": "Care este modul correct pentru a face binding in cazul de mai jos?\\n<ListView.View>\\n\\t<GridView>\\n\\t\\t<GridViewColumn Header=\"Friend Request\" Width =\"100\" ...................\"/>\\n\\t</GridView>\\n</ListView.View>",
+			"answers": 
+			[
+				{
+					"answer": "DisplayMemberBinding=\"{Binding UserName}\"",
+					"correct": "true"
+				}, 
+				{
+					"answer": "DisplayMemberBinding=\"UserName\"",
+					"correct": "false"
+				}, 
+				{
+					"answer": "DisplayMemberBinding={\"UserName\"}",
+					"correct": "false"
+				}, 
+				{
+					"answer": "DisplayMemberBinding={Binding UserName}",
+					"correct": "false"
+				},
+				{
+					"answer": "DisplayMemberBinding={Binding \"UserName\"}",
+					"correct": "false"
+				}
+			],
+			"justification": "Pentru a face binding intre proprietatea unui element \"fizic\", trebuie sa specificam ca vrem sa facem binding in corpul proprietatii. Campul al doilea specifica proprietatea cu care se face Binding."
+		},
+		{
+		  	"chapter": "WPF",
+			"requirement": "Care sunt tipurile de layout care pot fi folosite pentru organizarea continutului?",
+			"answers": 
+			[
+				{
+					"answer": "Grid.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Stack.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Flow.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Dock.",
+					"correct": "true"
+				},
+				{
+					"answer": "Box.",
+					"correct": "false"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Alegeti tipurile posibile de binding specifice WCF-ului:",
+			"answers": 
+			[
+				{
+					"answer": "basicHttpBinding",
+					"correct": "true"
+				}, 
+				{
+					"answer": "tcpBinding",
+					"correct": "false"
+				}, 
+				{
+					"answer": "wsHttpBinding",
+					"correct": "true"
+				}, 
+				{
+					"answer": "netPeerTcpBinding",
+					"correct": "true"
+				},
+				{
+					"answer": "namedPipeBinding",
+					"correct": "false"
+				}
+			],
+			"justification": "basicHttpBinding - Binding la nivel de Http. tctBinding - Nu exista, varianta correcta fiint netTctBinding. wsHttpBinding - Binding la nivel de Http securizat. netPeerTcpBinding - Binding la nivel de Peer-to-Peer. namedPipeBinding - nu exista, varianta correcta fiind netNamedPipeBinding"
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Cum se genereaza Proxy pentru un serviciu WCF?",
+			"answers": 
+			[
+				{
+					"answer": "svcutil adress:port:name /out:e:\\proxy /config:e:\\app.config",
+					"correct": "true"
+				}, 
+				{
+					"answer": "svcutil /address:addressName /port:portName /service:nameService /out:e:\\proxy /config:e:\\app.config",
+					"correct": "false"
+				}, 
+				{
+					"answer": "remoteObject = (MyRemotableObject) Activator.GetObject(typeof(MyRemotableObject),\"tcp://localhost:8080/HelloWorld\");",
+					"correct": "false"
+				}
+			],
+			"justification": "Pentru a genera un Proxi, se foloseste utilitarul svcutil, cu urmat de adresa url, impreuna cu portul si serviciul distribuit. Activator.GetObject - este pentru Remoting."
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Care este structura correcta a arborelui xml necesar realizarii conexiunii WCF?",
+			"answers": 
+			[
+				{
+					"answer": "<system.serviceModel>\\n\\t<services>\\n\\t\\t<service>\\n\\t\\t\\t<endpoint address binding contract>\\n\\t\\t\\t\\t<identity></identity>\\n\\t\\t\\t</endpoint>\\n\\t\\t</service>\\n\\t</services>\\n</system.ServiceModel>",
+					"correct": "true"
+				}, 
+				{
+					"answer": "<system.serviceModel>\\n\\t<services>\\n\\t\\t<service>\\n\\t\\t\\t<endpoint address contract>\\n\\t\\t\\t\\t<identity></identity>\\n\\t\\t\\t</endpoint>\\n\\t\\t</service>\\n\\t</services>\\n</system.ServiceModel>",
+					"correct": "false"
+				}, 
+				{
+					"answer": "<system.serviceModel>\\n\\t<services>\\n\\t\\t<service>\\n\\t\\t\\t<identity>\\n\\t\\t\\t\\t<endpoint address binding contract />\\n\\t\\t\\t</identity>\\n\\t\\t<service>\\n\\t</services>\\n</system.ServiceModel>",
+					"correct": "false"
+				}, 
+				{
+					"answer": "<system.serviceModel>\\n\\t<services>\\n\\t\\t<service>\\n\\t\\t\\t<endpoint address binding contract />\\n\\t\\t</service>\\n\\t</services>\\n</system.ServiceModel>",
+					"correct": "true"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Cum se poate face Overloading in WCF",
+			"answers": 
+			[
+				{
+					"answer": "Prin atribute. Tipul pe care il va avea metoda fiind declarat in OperationContract",
+					"correct": "true"
+				}, 
+				{
+					"answer": "In modul normal, fisierul proxy avand interfata in care este declarata supraincarcarea",
+					"correct": "false"
+				}, 
+				{
+					"answer": "WCF nu suporta Overloading.",
+					"correct": "false"
+				}
+			],
+			"justification": "WSDL nu suporta overloading, asta insemnand ca metoda normala din limbajul de programare invatat anii anteriori, nu va fi recunoscut. Insa, acest dezavantaj a fost reparat prin abilitatea Contractului, unde poate fi declarat tipul parametrilor."
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Care sunt tipurile de schimb de mesaje (MEP) suportate de WCF?",
+			"answers": 
+			[
+				{
+					"answer": "Request/Response",
+					"correct": "true"
+				}, 
+				{
+					"answer": "One Way",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Duplex",
+					"correct": "true"
+				}
+			],
+			"justification": "Request/Response este modul de baza implementat de WCF. Pentru a-l utiliza, seteaza atributul IsOneWay = false, din interiorul OperationContract. Acest lucru presupune ca serverul va astepta raspuns de la crient. One Way se implementeaza prin setarea atributului IsOneWay = true, din interiorul OperationContract. Duplex, presupune transfer de mesaje (apelare de metode) intre client si server. Este declarat prin asocierea unui CallbackContract lui ServiceContract."
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Care este relatia dintre Service Endpoint si Client Endpoint",
+			"answers": 
+			[
+				{
+					"answer": "Service Endpoint se afla la un URL hostat de catre server, in timp ce Client Endpoint se apla pe masina unde este apelat serviciul.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Si in cazul lui Service Endpoint, si in cazul lui Client Endpoint, bindarile trebuiesc implementate.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Service Endpoint are datoria de a-si implementa bindarile, in timp ce in cazul Clientului, bindarile sunt suportate de catre serviciu.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "In cazul serverului, Contractul presupune implementarea si distribuirea unei interfete, in timp ce pentru Client, Contractul este interpretat ca metodele la care are acces.",
+					"correct": "true"
+				}
+			],
+			"justification": "Clientul isi inregistreaza Endpoint-ul, folosind fisiere primite de la Server, care se afla la un URL facut public, pentru Clientii care se conecteaza la URL-ul respectiv. Acest lucru inseamna ca el nu trebuie sa configureze nimic. "
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Care este modul de creare implicit pentru instante, in WCF?",
+			"answers": 
+			[
+				{
+					"answer": "Per-Call",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Per-Session",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Singleton",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Per-Request",
+					"correct": "false"
+				}
+			],
+			"justification": "Pentru a utiliza celelalte moduri de creare, este nevoie de specificatii in plus, reprezentand situatii speciale. Per-Session este cel default, fiind cel mai des intalnit in aplicatii, si oferind suport stateful."
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Ce tip de contract trebuie sa expuna un serviciu, care are nevoie sa manipuleze corpul si headerul unui mesaj SOAP?",
+			"answers": 
+			[
+				{
+					"answer": "[ServiceContract]",
+					"correct": "false"
+				}, 
+				{
+					"answer": "[DataContract]",
+					"correct": "false"
+				}, 
+				{
+					"answer": "[FaultContract]",
+					"correct": "false"
+				}, 
+				{
+					"answer": "[MessageContract]",
+					"correct": "true"
+				}
+			],
+			"justification": "[SelviceContract] descrie operatiile pe care le poate executa clientul. \\n[DataContract] defineste tipurile de date ce sunt transferate de la, si catre, serviciu. \\n[FaultContract] defineste erorile si modul in care serviciul manipuleaza si propaga erorile catre client. \\n[MessageContract] permite serviciului sa interactioneze direct cu mesajele."
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "Care sunt modurile prin care se poate avea grija de concurenta in WCF?",
+			"answers": 
+			[
+				{
+					"answer": "Single",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Reentrant",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Semafor",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Multiple",
+					"correct": "true"
+				},
+				{
+					"answer": "Critical Section",
+					"correct": "false"
+				}
+			],
+			"justification": "Single - Inseamna ca la un moment dat, o singura cerere poate fi executata. \\nMultiple - Inseamna ca mai multe cereri pot fi executate simultan de mai multe thread-uri. \\nReetrans - Inseamna ca o singura instanta a unui serviciu WCF va procesa o cerere la un moment dat, insa thread-ul poate iesi din serviciu ca sa apeleze alt serviciu. \\nSemafor si Critical Section - Nu reprezinta moduri de rezolvare, si solutii. "
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "[FaultContract]",
+			"answers": 
+			[
+				{
+					"answer": "Reprezinta un contract prin care serverul distribuie informatii despre exceptiile intampinate.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Ofera informatii complete despre exceptie.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Se implementeaza ca Atribul la nivelul metodei.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Informatii despre implementarea acestui contract trebuie sa fie incluse si in ServiceContract, ca si CallbackContract..",
+					"correct": "true"
+				},
+				{
+					"answer": "FaultContract declara o clasa care va fi trimisa la client, si care va contine informatii despre exceptie.",
+					"correct": "false"
+				}
+			],
+			"justification": "Serviciul nu poate sa ofere informatii detaliate despre erorile intampinate, deoarece, exceptia generata contine detalii despre informatiile interne. Astfel, WCF a venit cu FaultContract. Acest contract presupune declararea unei clase care se va comporta ca exceptia atuncata de o metoda. Nu este nevoie sa fie trebuta si in ServiceContract, ca CallbackContract."
+		},
+		{
+		  	"chapter": "WCF",
+			"requirement": "[CallbackContract]",
+			"answers": 
+			[
+				{
+					"answer": "Folosit pentru comunicarea duplex, asigura transferul de informatii de la client la serviciu.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Foloseste o clasa care va ingloba informatiile returnate de catre client.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Serviciul se ocupa de implementarea si tratarea acestuia",
+					"correct": "false"
+				}, 
+				{
+					"answer": "La instantierea proxy-ului pe client, acesta este nevoit sa dea ca parametru clasa callback.",
+					"correct": "true"
+				}
+			],
+			"justification": "Transferul de mesaje duplex se face prin [ColbackContract]. Acesta presupune declararea unei clase, de catre ambele parti, care se va juca rolul de event, atentionand clientul atunci cand serverul apeleaza la acesta."
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Query String:",
+			"answers": 
+			[
+				{
+					"answer": "Transmite informatii despre pagina, catre server.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Toate browserele utinizeaza Query String.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Necesita resurse din partea serverului.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Userul nu are acces la informatia transmisa prin Query String, datorita securitatii pe care o implementeaza.",
+					"correct": "false"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Ce returneaza serverul atunci cand browserul solicita informatii.",
+			"answers": 
+			[
+				{
+					"answer": "Browserul returneaza un fisier .xml care este afisat pe pagina.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Browserul returneaza un fisier .aspx care este procesat de catre parserul HTML.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Returneaza infrmatii care sunt incarcate intr-un HTML String.",
+					"correct": "true"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Ce se intampla atunci cand un client acceseaza o pagina ASP.NET de pe un server ISS?",
+			"answers": 
+			[
+				{
+					"answer": "Cererea user-ului este receptata de catre pipeline-ul integrat de procesare a cererilor.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Se creeaza un obiect Response care va procesa de cererea user-ului.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Obiectului Response i se aloca un obiect HttpApplication.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Obiectul HttpApplication va trimite raspuns cererii user-ului.",
+					"correct": "true"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Ce este ASP?",
+			"answers": 
+			[
+				{
+					"answer": "Un framework pentru aplicatii orientate pe servicii.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Un framework care coreleaza obiecte la relatii.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Un framework pentru aplicatii web dezvoltat de Microsoft.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Un sub sistem grafic pentru rendarea aplicatiilor pentru windows.",
+					"correct": "false"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "In care event sunt controalele incarcate in totalitate?",
+			"answers": 
+			[
+				{
+					"answer": "IsPostBack",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Page_Init",
+					"correct": "true"
+				}, 
+				{
+					"answer": "ViewState",
+					"correct": "true"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Cum putem verifica daca pagina este Post Back?",
+			"answers": 
+			[
+				{
+					"answer": "Obiectul paginii are o proprietate PostBack.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Obiectul paginii are o proprietate IsPostBack.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Obiectul paginii are o proprietate IamPostBack.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Obiectul paginii are o proprietate PostBackPage.",
+					"correct": "false"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Care este durata de viata a item-urilor din ViewState?",
+			"answers": 
+			[
+				{
+					"answer": "5s",
+					"correct": "false"
+				}, 
+				{
+					"answer": "10s",
+					"correct": "false"
+				}, 
+				{
+					"answer": "La fel ca si durata vietii paginii",
+					"correct": "true"
+				}, 
+				{
+					"answer": "La fel ca si durata vietii aplicatiei",
+					"correct": "false"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Ce este Razor?",
+			"answers": 
+			[
+				{
+					"answer": "Un limbaj de programare.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Un limbaj de comunicare.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Un motor de vizualizare.",
+					"correct": "true"
+				}
+			],
+			"justification": "Razor este un motor de vizualizare, nu este un limbaj de programare."
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Ce sintaxa se foloseste in Razor pentru variabile?",
+			"answers": 
+			[
+				{
+					"answer": "&lt;% %&gt;",
+					"correct": "false"
+				}, 
+				{
+					"answer": "@",
+					"correct": "true"
+				}, 
+				{
+					"answer": "$",
+					"correct": "false"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Ce metoda se poate folosi pentru a inregistra o ruta in ASP.NET?",
+			"answers": 
+			[
+				{
+					"answer": "ApplicationRoute",
+					"correct": "false"
+				}, 
+				{
+					"answer": "MapRoute",
+					"correct": "true"
+				}, 
+				{
+					"answer": "ApplicationPageRoute",
+					"correct": "false"
+				}, 
+				{
+					"answer": "MapPageRoute",
+					"correct": "true"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Ce este un Controller?",
+			"answers": 
+			[
+				{
+					"answer": "Un controller este o clasa al carei nume trebuie sa se termine (obligat) cu Controller si este derivat din clasa Controller.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Un controller este o clasa al carei nume trebuie sa se termine (obligat) cu Controller si este derivat din clasa MvcController.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Controller-ul este responsabil cu tratarea input-ului de la utilizator (raspunde la interactiunile utilizatorului cu aplicatia). Controllerul contine logica desfasurarii aplicatiei.",
+					"correct": "true"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Ce este un View?",
+			"answers": 
+			[
+				{
+					"answer": "Un view este o vizualizare.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Un view este o instanta a unei vizualizari.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "View este echivalent cu o pagina.",
+					"correct": "true"
+				}
+			],
+			"justification": ""
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "La ce se foloseste RenderBody()?",
+			"answers": 
+			[
+				{
+					"answer": "Paginile layout pot avea continut ce poate fi adus de pe alte pagini. RenderPage face exact acest lucru.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Paginile section pot avea continut ce poate fi dus de pe alte pagini. RenderPage face exact acest lucru.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "RenderBody() indica unde va fi plasat template-ul vizualizarii in continutul elementului &lt;body&gt;.",
+					"correct": "true"
+				}
+			],
+			"justification": "Corect. RenderBody() indica unde va fi plasat template-ul vizualizarii in continutul elementului &lt;body&gt;"
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "La ce se foloseste RenderPage()?",
+			"answers": 
+			[
+				{
+					"answer": "RenderBody() indica unde va fi plasat template-ul vizualizarii in continutul elementului &lt;body&gt;",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Paginile layout pot avea continut ce poate fi adus de pe alte pagini. RenderPage face exact acest lucru.",
+					"correct": "true"
+				}, 
+				{
+					"answer": "Paginile layout pot avea continut ce poate fi dus pe alte pagini. RenderPage face exact acest lucru.",
+					"correct": "false"
+				}
+			],
+			"justification": "Gresit.Paginile layout pot avea continut ce poate fi adus de pe alte pagini. RenderPage face exact acest lucru"
+		},
+		{
+		  	"chapter": "ASP",
+			"requirement": "Cum se creaza o configurare in ASP.NET5?",
+			"answers": 
+			[
+				{
+					"answer": "Folosind System.Configuration.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Folosind web.config.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Folosind Web.config.",
+					"correct": "false"
+				}, 
+				{
+					"answer": "Se foloseste o simpla lista ierarhica de perechi nume-valoare in care nodurile sunt separate prin ':'",
+					"correct": "true"
+				}
+			],
+			"justification": "Gresit. Se foloseste o simpla lista ierarhica de perechi nume-valoare in care nodurile sunt separate prin ':'"
+		}
+	]
+}

@@ -1,0 +1,303 @@
+﻿@model Dictionary<string, List<LectorASP.ProjectTSDotNETServiceReference.Question>>
+@{
+    ViewBag.Title = "Edit Question";
+}
+
+
+<script>
+    function setNewTestValue() {
+        var value = $("input[name='questionTestPoints']").val();
+        $('span', $("option:selected", $("select[name='questionTests']"))).attr("hiddenField", value);
+    }
+
+    function setNewResponseValue() {
+        var newText = $(".textareaContent").text();
+        var check = $("input[name='questionResponseCorrect']");
+        var option = $("option:selected", $("select[name='questionResponses']"));
+        var span = $('span', option);
+        var correct = check.prop("checked");
+        console.log(correct);
+        span.text(newText);
+        if (correct == true) {
+            span.attr("hiddenField", 1);
+            option.attr("class", "green");
+            $("select[name='questionResponses']").attr("class", "green");
+        }
+        else if (correct == false) {
+            span.attr("hiddenField", 0);
+            option.attr("class", "normal");
+            $("select[name='questionResponses']").attr("class", "normal");
+        }
+    }
+
+    function addNewResponse() {
+        var text = $("div[name='questionResponseAnswer']").text();
+        console.log(text);
+        var id = "@Guid.NewGuid().ToString()";
+        if ($("input[name='questionResponseCorrect']").prop('checked') == true) {
+            $('<option>').val(text + "^1").html("<span hiddenField='" + 1 + "'>" + text + "</span>").attr("class", "green").prop("selected", "selected").appendTo("select[name='questionResponses']");
+            $("div[name='questionResponseAnswer']").html("");
+        }
+        else {
+            $('<option>').val(text + "^0").html("<span hiddenField='" + 0 + "'>" + text + "</span>").attr("class", "normal").prop("selected", "selected").appendTo("select[name='questionResponses']");
+            $("div[name='questionResponseAnswer']").html("");
+        }
+    }
+
+    function removeNewResponse(sel)
+    {
+        console.log(sel);
+        $('option:selected', sel).remove();
+    }
+
+    function createQuestionPrep() {
+        $('#entityContent').css("display", "inline-block");
+    }
+
+    function callFirstAjax(id)
+    {
+        $.ajax({
+            cache: false,
+            type: "GET",
+            //contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: '@Url.Action("QuestionEntitySelected", "LectorEdit")',
+            data: { ID: id },
+            success: function (data) {
+                $('#entityContent').css("display", "inline-block");
+                //$("fieldset[name='chaptersSelectSpace'").html("<label class='entityLabel' for='questionChapter'>Chapter</label>");
+                $("select[name='questionChapter']").html('');
+                $("select[name='questionResponses']").html('');
+                $("select[name='questionTests']").html('');
+                $("span[name='questionId']").html("<b>" + data.ID + "</b>");
+                $("textarea[name='questionRequirement']").val(data.Requirement);
+                $("textarea[name='questionJustification']").val(data.Justification);
+                var chapter = data.Chapter;
+                //console.log(chapter);
+                var element = $('<option></option>');
+                element.val(chapter.ID).html("<span>" + chapter.Name + "</span>");
+                $("select[name='questionChapter']").append(element);
+                //$('<option>').data("hiddenField", chapter.ID).text(chapter.Name).appendTo("select[name='questionChapter']");
+                //$('<option>').text(" ").attr("class", "empty").appendTo("select[name='questionResponses']");
+                var responses = data.Responses;
+                //$('<option>').text("").appendTo("select[name='questionResponses']");
+                responses.forEach(function (entry) {
+                    if (entry.Value == 1) {
+                        $('<option>').val(entry.ID).html("<span hiddenField='" + entry.Value + "'>" + entry.Name + "</span>").attr("class", "green").appendTo("select[name='questionResponses']");
+                    }
+                    else {
+                        $('<option>').val(entry.ID).html("<span hiddenField='" + entry.Value + "'>" + entry.Name + "</span>").attr("class", "normal").appendTo("select[name='questionResponses']");
+                    }
+
+                    //console.log(entry.ID + " - " + entry.Name);
+                });
+
+                responseChanged($("select[name='questionResponses']"));
+
+                //$('<option>').text(" ").attr("class", "empty").appendTo("select[name='questionTests']");
+                var tests = data.Tests;
+                //$('<option>').text("").appendTo("select[name='questionTests']");
+                tests.forEach(function (entry) {
+                    $('<option>').val(entry.ID).html("<span hiddenField='" + entry.Value + "'>" + entry.Name + "</span>").appendTo("select[name='questionTests']");
+                    //console.log(entry.ID + " - " + entry.Name);
+                });
+                testChanged($("select[name='questionTests']"));
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert('Fail');
+            }
+        });
+    }
+
+
+    function modifyQuestion()
+    {
+        var chaptersNotNeeded = $("select[name='questionChapter'] option").map(function() {return $(this).val();}).get();
+        var testsNotNeeded = $("select[name='questionTests'] option").map(function () { return $(this).val(); }).get();
+
+        var chap = "";
+        chaptersNotNeeded.forEach(function (entry) {
+            chap = chap + entry + " ";
+        });
+        var tst = "";
+        testsNotNeeded.forEach(function (entry) {
+            tst = tst + entry + " ";
+        });
+        $("select[name='questionTests']").attr("multiple", "true").attr("size", "3");
+
+        console.log("Chapters - " + chaptersNotNeeded);
+        console.log("Tests - " + testsNotNeeded);
+        var data = {};
+        var tables = new Object();
+        tables["Chap"] = "Chapter";
+        tables["Tst"] = "Tests";
+            //data['tables[' + 1 + '].Value'] = "1";
+
+            //data['tables[' + 2 + '].Key'] = "Test";
+            //data['tables[' + 2 + '].Value'] = "2";
+        console.log(data);
+        console.log(tables);
+/*
+        var x = Sys.Serialization.JavaScriptSerializer.serialize(
+                {
+                    "Chapter": chaptersNotNeeded,
+                    "Test": testsNotNeeded
+                });
+                */
+        //console.log(x);
+        $.ajax({
+            url: '@Url.Action("GetEntitiesFromDB", "LectorCreate")',
+            type: "POST",
+            traditional: true,
+            data: { tables: tables },
+            success:  function (data) { console.log(data); }
+        });
+
+
+        $('textarea').removeAttr("readonly");
+        $("input[type=checkbox], input[type=number]").removeAttr("disabled");
+        $("input[type=button]").removeAttr("disabled");
+    }
+
+
+    function createQuestionPrep()
+    {
+        $('#entityContent').css("display", "inline-block");
+        $("span[name='topTitle']").text("Create");
+        $("select[name='questionChapter']").html("");
+        $("select[name='questionResponses']").html("").attr("multiple", "true").attr("size", "2");
+        $("select[name='questionTests']").html("");
+        $("span[name='questionId']").html("");
+        $("textarea[name='questionRequirement']").val("").removeAttr("readonly");
+        $("textarea[name='questionJustification']").val("").removeAttr("readonly");
+        $("input[name='questionResponseCorrect']").prop('checked', false);
+        $("div[name='questionResponseAnswer']").html("").attr("contenteditable", true);
+        $("input[name='questionResponseCorrect']").removeAttr("disabled");
+        $("input[name='setResponseValue']").removeAttr("disabled");
+        $("input[name='addResponse']").removeAttr("disabled");
+        $("input[name='removeResponse']").removeAttr("disabled");
+        $("input[type='submit']").removeAttr("disabled");
+
+
+
+        $.ajax({
+            cache: false,
+            type: "GET",
+            //contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            traditional: true,
+            url: '@Url.Action("GetEntitiesFromDB", "LectorCreate")',
+            data: { tables: ["Chapter"] },
+            success: function (data) {
+                //console.log(data);
+                data.Chapter.forEach(function (entry) {
+                    //console.log(entry);
+                    var element = $('<option></option>');
+                    element.val(entry.ID).html("<span>" + entry.FirsStringField + "</span>");
+                    $("select[name='questionChapter']").append(element);
+                });
+                //console.log(data);
+            }
+        });
+    }
+
+
+    function responseChanged(sel)
+    {
+        var optionSelected = $("option:selected", sel);
+        var opClass = optionSelected.attr("class");
+        $("select[name='questionResponses']").attr("class", opClass);
+        var value = $('span', optionSelected).attr("hiddenField");
+
+        console.log(value);
+
+        $("div[name='questionResponseAnswer']").html("<span class='textareaContent'>" + optionSelected.text() + "</span>");
+        if (value == 1) {
+            $("input[name='questionResponseCorrect']").prop('checked', true);
+        }
+        else if(value == 0) {
+            $("input[name='questionResponseCorrect']").prop('checked', false);
+        }
+        else {
+            $("input[name='questionResponseCorrect']").prop('checked', false);
+            $("div[name='questionResponseAnswer']").html("");
+        }
+    }
+
+    function testChanged(sel)
+    {
+        var value = $('span', $("option:selected", sel)).attr("hiddenField");
+        $("input[name='questionTestPoints']").val(value);
+    }
+
+
+
+
+    $(document).ready(function () {
+        // $('.entityFrom').click(function () {
+        //     var id = $(this).attr("hiddenfield");
+        // });
+    });
+</script>
+
+<h2 style="display:inline-block">Edit Question</h2> <button value="Create" type="button" onclick="createQuestionPrep()">Create</button>
+<div class="clear"></div>
+<div id="databaseContent" class="DBEntityListContent">
+    @foreach (var questions in Model)
+    {
+        <h3 class="questionGrp">@questions.Key</h3>
+        foreach (LectorASP.ProjectTSDotNETServiceReference.Question question in questions.Value)
+        {
+            <div class="entityFromDB" hiddenField="@question.QuestionId" onclick="callFirstAjax($(this).attr('hiddenfield'))"><span>@question.Requirement</span></div>
+        }
+    }
+</div>
+
+<div id="entityContent" class="DBEntityContent">
+    @using (Html.BeginForm())
+    {
+        <p class="entityTitle"><span name="topTitle">Titlu</span></p>
+        <br />
+
+        <label class="entityLabel">ID</label>
+        <span class="entityInput" name="questionId"></span>
+        <br />
+
+        <label class="entityLabel" for="questionRequirement">Title</label> 
+        <textarea class="entityInput" readonly name="questionRequirement" value=""></textarea>
+        <br />
+
+        <label class="entityLabel" for="questionJustification">Justification</label> 
+        <textarea class="entityInput" readonly name="questionJustification" value=""></textarea>
+        <br />
+
+        <fieldset name="chaptersSelectSpace">
+            <label class="entityLabel" for="questionChapter">Chapter</label>
+            <select class="entityInput" name="questionChapter"></select>
+        </fieldset>
+        <br />
+
+        <label class="entityLabel" for="questionResponses">Responses</label> <select class="entityInput" name="questionResponses" onchange="responseChanged(this)"></select> 
+        <input type="checkbox" name="questionResponseCorrect" checked="false" disabled="disabled" /> 
+        <input type="button" name="setResponseValue" value="Set" disabled="disabled" onclick="setNewResponseValue()" />
+        <br />
+
+        <div name="questionResponseAnswer" class="entityTextChangeInput" contenteditable="false"></div>
+        <div class="modifySavePanel">
+            <input type="button" name="addResponse" value="Add" disabled="disabled" onclick="addNewResponse()" />
+            <input type="button" name="removeResponse" value="Remove" disabled="disabled" onclick="removeNewResponse($('select[questionResponses]'))" />
+        </div>
+        <br />
+
+        <label class="entityLabel" for="questionTests">Tests</label> <select class="entityInput" name="questionTests" onchange="testChanged(this)"></select> 
+        <input type="number" name="questionTestPoints" value="" disabled="disabled" /> 
+        <input type="button" value="Set" disabled="disabled" onclick="setNewTestValue()" />
+        <br />
+
+        <div class="modifySavePanel">
+            <input type="button" value="Modify" onclick="modifyQuestion()" disabled="disabled" />
+            <input type="submit" value="Save" disabled="disabled" />
+        </div>
+    }
+</div>
+<div class="clear"></div>

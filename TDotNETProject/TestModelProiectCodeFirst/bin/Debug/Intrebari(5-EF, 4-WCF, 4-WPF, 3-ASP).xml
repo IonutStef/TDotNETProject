@@ -1,0 +1,170 @@
+<questions>
+	<question>
+		<chapter>EF</chapter>
+		<requirement>Lazy loading, cerinte:</requirement>
+		<answers>
+			<answer correct = "true">Clasele trebuie sa fie publice.</answer>
+			<answer correct = "false">Depinde ne noi daca vrem sa fie sealed.</answer>
+			<answer correct = "false">Proprietatile de navigare pot fi private.</answer>
+			<answer correct = "false">Proprietatile de navigare trebuie sa fie virtuale.</answer>
+		</answers>
+		<justification>"justification": "Clasele trebuie sa fie publice pentru a putea fi accesate de catre model si de catre. Daca proprietatea nu va fi marcata ca virtual, Lazy Loading nu va avea acces la ea. Clasele nu pot fi marcate ca Sealed. Proprietatile de navigare trebuie sa fie publice, pentru a fi utilizate."</justification>
+	</question>
+	<question>
+		<chapter>EF</chapter>
+		<requirement>In ce consta arhitectura ADO.NET Entity Framework?</requirement>
+		<answers>
+			<answer correct = "true">Provideri specifici pentru sursa de date.</answer>
+			<answer correct = "true">Parser EDM.</answer>
+			<answer correct = "false">Tratare erori.</answer>
+			<answer correct = "false">Parser XML in caz ca baza de date este stocata sub forma de fisiere XML.</answer>
+		</answers>
+		<justification>Entity Framework ofera o modalitate personala de a interactiona cu baza de date. Relatiile sunt simplificate si transformate, dar pastreaza proprietatile pe care le au in baza de date. Include parsare EDM prin tartarea specificatiilor SDL (Storage Data language – model de memorare) al modelului de date, stabilirea asociatiilor dintre modelul relational (baza de date) si modelul conceptual. Din schema relationala se creaza vizualizari ale datelor ce corespund modelului conceptual. Informatii din mai multe tabele sunt agregate intr-o entitate. EF face doar parsare EDM, si se leaga doar la baza de date SQL.</justification>
+	</question>
+	<question>
+		<chapter>EF</chapter>
+		<requirement>Care sunt conceptele principale introduse de EDM?</requirement>
+		<answers>
+			<answer correct = "true">Entity.</answer>
+			<answer correct = "true">Relationship.</answer>
+			<answer correct = "false">Indexes.</answer>
+			<answer correct = "false">Views.</answer>
+			<answer correct = "false">Procedures.</answer>
+		</answers>
+		<justification>Elementele din baza de date sunt prezentate sub forma unor Entitati (clase POCO), cu care aplicatia poate interactiona. Relatiile din baza de date sunt prezente si in entitati, avand aceleasi semnificatii ca in baza de date. Indecsii, View-urile si proprietatile nu sunt intra prin parserul EDM.</justification>
+	</question>
+	<question>
+		<chapter>EF</chapter>
+		<requirement>Eager loading; Include():</requirement>
+		<answers>
+			<answer correct = "true">Realizeaza un Join la nivelul bazei de date.</answer>
+			<answer correct = "false">O cerere poate consine un singr apel al metodei Include().</answer>
+			<answer correct = "false">Nu este nevoie adaugarea metodei la DbSet, pentru a o folosi ca parte a unei cereri, deoarece EF se ocupa singur de acest lucru, atunci cand intalneste metoda.</answer>
+			<answer correct = "false">Este definita ca metoda extinsa pe IQueryable<T></answer>
+		</answers>
+		<justification>Metoda loading se manifesta asupra bazei de date prin Join-uri intre tabele. Cererile sunt facute asupra bazei de date, asa ca este necesara extinderea peste interfata IQueryable. O cerere poate activa multiple apeluri a metodei Include. Entity Framework nu se ocupa singur de adaugarea metodei la DbSet. Asta depinde de noi.</justification>
+	</question>
+	<question>
+		<chapter>EF</chapter>
+		<requirement>Care din urmatoarele exemple realizeaza incarcare explicita (explicit loading):</requirement>
+		<answers>
+			<answer correct = "false">myDBcontext.Customers(c => c.Orders)FirstOrDefault().</answer>
+			<answer correct = "false">myDBcontext.Entry(customerEntity).Property("Orders").Load()</answer>
+			<answer correct = "true">myDBcontext.Entry(customerEntity).Reference(c => c.Orders).Load()</answer>
+			<answer correct = "false">myDBcontext.Customers.FirstOrDefault().Orders</answer>
+		</answers>
+		<justification>Metoda foloseste expresii Lambda, care trebuie sa fie valide. Primul raspuns nu incarca raspunsul de la baza de date. Cel de-al doilea nu prezinta o expresie Lambda, la fel ca si ultima.</justification>
+	</question>
+	<question>
+		<chapter>WPF</chapter>
+		<requirement>Data binding; Directia de transfer a datelor:</requirement>
+		<answers>
+			<answer correct = "true">Transferul de date a unei legaturi se face de la obiectul legat (target) catre proprietatea de care a fost legat (source).</answer>
+			<answer correct = "true">Transferul de date a unei legaturi se face de la proprietatea de care a fost legat obiectul (source), catre obiect (target).</answer>
+			<answer correct = "false">One Way Binding face ca modificarea obiectului legat (target) sa manifeste modificari a proprietatii (source), dar modificari a proprietatii (source) sa nu induca modificari in obiect (target).</answer>
+			<answer correct = "true">TwoWay Binding face ca modificari a sursei sa induca modificari in target, precum si modificari in target, sa induca modificari in sursa.</answer>
+			<answer correct = "false">Pentru ca modelul sa detecteze modificari in sursa si target, sursa implementeaza automat (default) o proprietate de notificare a modificarilor.</answer>
+		</answers>
+		<justification>Transferul de date printr-o legatura poate fi facuta atat de la source catre target, cat si invers. One Way Binding face ca modificari in source sa manifeste modificari in target. Sursa nu implementeaza proprietatea necesara notificarii. Este datoria noastra sa facem asta.</justification>
+	</question>
+	<question>
+		<chapter>WPF</chapter>
+		<requirement>Cum iei informatia dintr-un label?</requirement>
+		<answers>
+			<answer correct = "false">string content = labelName.Content;</answer>
+			<answer correct = "true">string content = labelName.Content.ToString();</answer>
+			<answer correct = "false">string content = labelName.Text;</answer>
+			<answer correct = "false">string content = labelName.Content();</answer>
+		</answers>
+		<justification>Pentru a accesa continutul unui label, apelam la Proprietatea Content. Text este intalnit doar in elementele TextBox*</justification>
+	</question>
+	<question>
+		<chapter>WPF</chapter>
+		<requirement>Care este modul corect pentru a face binding in cazul de mai jos?&#xA;&lt;ListView.View&gt;&#xA;&#009;&lt;GridView\&gt;&#xA;&#009;&#009;&lt;GridViewColumn Header=&quot;Friend Request&quot; Width =&quot;100&quot; ...................&quot;/&gt;&#xA;&#009;&lt;/GridView&gt;&#xA;&lt;/ListView.View&gt;</requirement>
+		<answers>
+			<answer correct = "true">DisplayMemberBinding=&quot;{Binding UserName}&quot;</answer>
+			<answer correct = "false">DisplayMemberBinding=&quot;UserName&quot;</answer>
+			<answer correct = "false">DisplayMemberBinding={&quot;UserName&quot;}</answer>
+			<answer correct = "false">DisplayMemberBinding={Binding UserName}</answer>
+			<answer correct = "false">DisplayMemberBinding={Binding &quot;UserName&quot;}</answer>
+		</answers>
+		<justification>Pentru a face binding intre proprietatea unui element \"fizic\", trebuie sa specificam ca vrem sa facem binding in corpul proprietatii. Campul al doilea specifica proprietatea cu care se face Binding.</justification>
+	</question>
+	<question>
+		<chapter>WPF</chapter>
+		<requirement>Selectati tipurile de Layout care pot fi folosite in WPF:</requirement>
+		<answers>
+			<answer correct = "true">Grid.</answer>
+			<answer correct = "true">Stack.</answer>
+			<answer correct = "false">Flow.</answer>
+			<answer correct = "true">Dock.</answer>
+			<answer correct = "false">Box.</answer>
+		</answers>
+		<justification></justification>
+	</question>
+	<question>
+		<chapter>WCF</chapter>
+		<requirement>Alegeti tipurile posibile de binding specifice WCF-ului:</requirement>
+		<answers>
+			<answer correct = "true">basicHttpBinding</answer>
+			<answer correct = "false">tcpBinding</answer>
+			<answer correct = "true">wsHttpBinding</answer>
+			<answer correct = "true">netPeerTcpBinding</answer>
+			<answer correct = "false">namedPipeBinding</answer>
+		</answers>
+		<justification>basicHttpBinding - Binding la nivel de Http. tctBinding - Nu exista, varianta correcta fiint netTctBinding. wsHttpBinding - Binding la nivel de Http securizat. netPeerTcpBinding - Binding la nivel de Peer-to-Peer. namedPipeBinding - nu exista, varianta correcta fiind netNamedPipeBinding</justification>
+	</question>
+	<question>
+		<chapter>WCF</chapter>
+		<requirement>Cum se genereaza Proxy pentru un serviciu WCF?</requirement>
+		<answers>
+			<answer correct = "true">svcutil adress:port:name /out:e:\proxy /config:e:\app.config</answer>
+			<answer correct = "false">svcutil /address:addressName /port:portName /service:nameService /out:e:\proxy /config:e:\app.config</answer>
+			<answer correct = "false">remoteObject = (MyRemotableObject) Activator.GetObject(typeof(MyRemotableObject),"tcp://localhost:8080/HelloWorld");</answer>
+		</answers>
+		<justification>Pentru a genera un Proxi, se foloseste utilitarul svcutil, cu urmat de adresa url, impreuna cu portul si serviciul distribuit. Activator.GetObject - este pentru Remoting.</justification>
+	</question>
+	<question>
+		<chapter>WCF</chapter>
+		<requirement>Care este structura corecta a arborelui XML necesar realizarii conexiunii WCF?</requirement>
+		<answers>
+			<answer correct = "true">&lt;system.serviceModel&gt;&#xA;&#009;&lt;services&gt;&#xA;&#009;&#009;&lt;service&gt;&#xA;&#009;&#009;&#009;&lt;endpoint address binding contract&gt;&#xA;&#009;&#009;&#009;&#009;&lt;identity&gt;&lt;/identity&gt;&#xA;&#009;&#009;&#009;&lt;/endpoint&gt;&#xA;&#009;&#009;&lt;/service&gt;&#xA;&#009;&lt;/services&gt;&#xA;&lt;/system.ServiceModel&gt;</answer>
+			<answer correct = "false">&lt;system.serviceModel&gt;&#xA;&#009;&lt;services&gt;&#xA;&#009;&#009;&lt;service&gt;&#xA;&#009;&#009;&#009;&lt;endpoint address contract&gt;&#xA;&#009;&#009;&#009;&#009;&lt;identity&gt;&lt;/identity&gt;&#xA;&#009;&#009;&#009;&lt;/endpoint&gt;&#xA;&#009;&#009;&lt;/service&gt;&#xA;&#009;&lt;/services&gt;&#xA;&lt;/system.ServiceModel&gt;</answer>
+			<answer correct = "false">&lt;system.serviceModel&gt;&#xA;&#009;&lt;services&gt;&#xA;&#009;&#009;&lt;service&gt;&#xA;&#009;&#009;&#009;&lt;identity&gt;&#xA;&#009;&#009;&#009;&#009;&lt;endpoint address binding contract /&gt;&#xA;&#009;&#009;&#009;&lt;/identity&gt;&#xA;&#009;&#009;&lt;/service&gt;&#xA;&#009;&lt;/services&gt;&#xA;&lt;/system.ServiceModel&gt;</answer>
+			<answer correct = "true">&lt;system.serviceModel&gt;&#xA;&#009;&lt;services&gt;&#xA;&#009;&#009;&lt;service&gt;&#xA;&#009;&#009;&#009;&lt;endpoint address binding contract /&gt;&#xA;&#009;&#009;&lt;/service&gt;&#xA;&#009;&lt;/services&gt;&#xA;&lt;/system.ServiceModel&gt;</answer>
+		</answers>
+		<justification></justification>
+	</question>
+	<question>
+		<chapter>ASP</chapter>
+		<requirement>Query String:</requirement>
+		<answers>
+			<answer correct = "false">Transmite informatii despre pagina, catre server.</answer>
+			<answer correct = "true">Toate browserele utilizeaza Query String.</answer>
+			<answer correct = "false">Necesita resurse din partea serverului.</answer>
+			<answer correct = "false">Userul nu are acces la informatia transmisa prin Query String, datorita securitatii pe care o implementeaza.</answer>
+		</answers>
+		<justification></justification>
+	</question>
+	<question>
+		<chapter>ASP</chapter>
+		<requirement>Ce returneaza serverul atunci cand browserul solicita informatii.</requirement>
+		<answers>
+			<answer correct = "false">Browserul returneaza un fisier .xml care este afisat pe pagina.</answer>
+			<answer correct = "false">Browserul returneaza un fisier .aspx care este procesat de catre parserul HTML.</answer>
+			<answer correct = "true">Returneaza infrmatii care sunt incarcate intr-un HTML String.</answer>
+		</answers>
+		<justification></justification>
+	</question>
+	<question>
+		<chapter>ASP</chapter>
+		<requirement>Ce se intampla atunci cand un client acceseaza o pagina ASP.NET de pe un server ISS?</requirement>
+		<answers>
+			<answer correct = "true">Cererea user-ului este receptata de catre pipeline-ul integrat de procesare a cererilor.</answer>
+			<answer correct = "false">Se creeaza un obiect Response care va procesa de cererea user-ului.</answer>
+			<answer correct = "true">Obiectului Response i se aloca un obiect HttpApplication.</answer>
+			<answer correct = "true">Obiectul HttpApplication va trimite raspuns cererii user-ului.</answer>
+		</answers>
+		<justification></justification>
+	</question>
+</questions>
