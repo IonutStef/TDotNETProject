@@ -21,8 +21,6 @@ namespace ConsoleServerHost
     {
         static void Main(string[] args)
         {
-            HelloWorld hw = new HelloWorld();
-            hw.sayHelloWorld();
             //ServerLector srv = new ServerLector();
             //srv.TestAddSubject();
             //srv.PrintSubjects();
