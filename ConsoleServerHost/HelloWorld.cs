@@ -11,6 +11,7 @@ namespace ConsoleServerHost
         public void sayHelloWorld()
         {
             Console.WriteLine("Hello World");
+            Console.WriteLine("I am here!");
         }
     }
 }
